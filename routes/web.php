@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,8 @@ Route::middleware(['auth', 'verified'])
         // del 'DashboardController'. Questa rotta ha il nome 'admin.dashboard' grazie al prefisso 
         // del nome impostato sopra.
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('project', ProjectController::class);
     });
 
 // ***middleware pezzo di codice che sta tra 2 processi
