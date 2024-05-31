@@ -1,27 +1,35 @@
 @extends('layouts.admin')
 
 @section('content')
-<h2>Crea un nuovo progetto</h2>
+    <h2>Crea un nuovo progetto</h2>
 
-<form action="{{ route('admin.project.store') }}" method="POST">
-    @csrf
+    <form action="{{ route('admin.project.store') }}" method="POST">
+        @csrf
 
-    <div class="mb-3">
-        <label for="name" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="name" name="name">
-    </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+        </div>
+        @error('name')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
-    <div class="mb-3">
-        <label for="client_name" class="form-label">Cliente</label>
-        <input type="text" class="form-control" id="client_name" name="client_name">
-    </div>
+        <div class="mb-3">
+            <label for="client_name" class="form-label">Cliente</label>
+            <input type="text" class="form-control" id="client_name" name="client_name" value="{{ old('client_name') }}">
+        </div>
+        @error('client_name')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
-    <div class="mb-3">
-        <label for="summary" class="form-label">Contenuto Progetto</label>
-        <textarea class="form-control" id="summary" rows="10" name="summary"></textarea>
-    </div>
+        <div class="mb-3">
+            <label for="summary" class="form-label">Contenuto Progetto</label>
+            <textarea class="form-control" id="summary" rows="10" name="summary">{{ old('summary') }}</textarea>
+        </div>
+        @error('summary')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
-    <button type="submit" class="btn btn-primary">Salva</button>
-</form>
-    
+        <button type="submit" class="btn btn-primary">Salva</button>
+    </form>
 @endsection

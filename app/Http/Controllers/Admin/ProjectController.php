@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
 {
@@ -19,7 +20,7 @@ class ProjectController extends Controller
         // dd('ciao');
         $projects = Project::all();
 
-        return view('admin.projects.index',compact('projects'));
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -40,9 +41,14 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        // $validated = $request->validate(
+        $validated = $request->validate(
+            [
+                'name' => 'required|min:5|max:150|unique:projects,name',
+                'client_name' => 'required|min:5|max:20',
+                'summary' => 'nullable|min:10'
+            ]
+        );
 
-        // );
         $formData = $request->all();
         // dd($formData);
         $newProject = new Project();
@@ -65,7 +71,7 @@ class ProjectController extends Controller
         $data = [
             'project' => $project
         ];
-        return view('admin.projects.show',$data);
+        return view('admin.projects.show', $data);
     }
 
     /**
@@ -88,6 +94,22 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+
+        $validated = $request->validate(
+            [
+                'name' => [
+                    'required',
+                    'min:5',
+                    'max:150',
+                    // 'unique:posts,title'
+                    Rule::unique('project')->ignore($project)
+                ],
+                'client_name' => 'required|min:5|max:20',
+                'summary' => 'nullable|min:10'
+            ]
+        );
+
+
         $formData = $request->all();
         $project->slug = Str::slug($formData['name'], '-');
         $project->update($formData);
@@ -101,8 +123,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        // dd('eliminato');
+        return redirect()->route('admin.project.index');
     }
 }
