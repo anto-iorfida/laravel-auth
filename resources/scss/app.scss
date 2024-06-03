@@ -1,1 +1,39 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+
+// index-------------------------
+.icon-colum{
+    display: flex;
+    gap:20px;
+    
+    .fa-trash{
+        color: red;
+    }
+    .fa-eye{
+        color: black;
+    }
+}
+// /index-------------------------
+// show---------------------------
+.icon-show{
+    display: flex;
+    justify-content:space-around;
+    font-size: 50px;
+    margin-top: 30px;
+}
+// /show--------------------------
+
+    .mess-info {
+        position: absolute;
+        right: 100px;
+        top: 70px;
+        display: inline-block;
+        padding: 6px 20px;
+        border-radius: 14px;
+        background: rgb(146, 245, 146);
+        transition: opacity 1s ease-in-out;
+    }
+
+    .mess-info.fade-out {
+        opacity: 0;
+    }

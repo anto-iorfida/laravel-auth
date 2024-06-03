@@ -45,7 +45,7 @@
 
         <div class="container-fluid vh-100">
             <div class="row h-100">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse vh-100">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
@@ -69,7 +69,7 @@
                     </div>
                 </nav>
 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-3">
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-3 vh-100 overflow-auto">
                     @yield('content')
                 </main>
             </div>

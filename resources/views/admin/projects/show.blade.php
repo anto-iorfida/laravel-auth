@@ -1,20 +1,34 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>{{ $project->name }}</h2>
+    @if (session('project_create'))
+        <div class="mess-info">Progetto creato con successo!</div>
+    @endif
+
+    @if (session('project_edit'))
+        <div class="mess-info">Progetto modificato con successo!</div>
+    @endif
+
+    <h2>Titolo: {{ $project->name }}</h2>
+
 
     <div>
-        slug: {{$project->slug}}
+        <strong>Slug:</strong> {{ $project->slug }}
     </div>
 
     <div>
-        <strong>data created:</strong> {{$project->created_at}}
+        <strong>data created:</strong> {{ $project->created_at }}
     </div>
     <div>
-        <strong>data updated:</strong> {{$project->updated_at}}
+        <strong>data updated:</strong> {{ $project->updated_at }}
     </div>
 
     @if ($project->summary)
         <p>{{ $project->summary }}</p>
     @endif
+
+    <div class="icon-show">
+        <div><a href="{{ route('admin.project.index') }}"><i class="fa-solid fa-arrow-left"></i></a></div>
+        <div><a href="{{ route('admin.project.edit', ['project' => $project->id]) }}"><i class="fa-solid fa-pen-to-square"></i></a></div>
+    </div>
 @endsection

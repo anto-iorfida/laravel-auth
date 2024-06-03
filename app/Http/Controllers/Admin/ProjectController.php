@@ -53,8 +53,11 @@ class ProjectController extends Controller
         // dd($formData);
         $newProject = new Project();
         $newProject->fill($formData);
+        // o si mette dopo che popolo $newProject senno la variabile è vuota oopure metto formData['name] al posto di $newProject->name
         $newProject->slug = Str::slug($newProject->name, '-');
         $newProject->save();
+
+        session()->flash('project_create', true);
 
         return redirect()->route('admin.project.show', ['project' => $newProject->id]);
     }
@@ -114,6 +117,9 @@ class ProjectController extends Controller
         $project->slug = Str::slug($formData['name'], '-');
         $project->update($formData);
 
+        session()->flash('project_edit', true);
+
+
         return redirect()->route('admin.project.show', ['project' => $project->id]);
     }
 
@@ -127,6 +133,8 @@ class ProjectController extends Controller
     {
         $project->delete();
         // dd('eliminato');
+        // memorizzare temporaneamente un dato nella sessione dell'utente. Questo dato sarà disponibile solo per la prossima richiesta HTTP e poi sarà automaticamente rimosso.
+        session()->flash('project_deleted', true);
         return redirect()->route('admin.project.index');
     }
 }
