@@ -24,7 +24,7 @@
     </div>
 
     @if ($project->summary)
-        <p>{{ $project->summary }}</p>
+        <p><strong>Summary: </strong>{{ $project->summary }}</p>
     @endif
 
     <div class="icon-show">

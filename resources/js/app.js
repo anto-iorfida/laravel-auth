@@ -40,12 +40,12 @@ import.meta.glob([
 
 
 // -------------------------------------------FAR COMPARIRE PER 4 SECONDI MESSAGGIO SESSIONE------------------------------
-// messaggio che compare per 4 secondi con conferma eliminazione 
+// messaggio che compare per 3 secondi con conferma eliminazione 
 setTimeout(function() {
     let messageElement = document.querySelector('.mess-info');
     if (messageElement) {
         messageElement.classList.add('fade-out');
     }
-}, 4000); //  4 secondi
+}, 3000); //  3 secondi
 // ------------------------------------------/FAR COMPARIRE PER 4 SECONDI MESSAGGIO SESSIONE------------------------------
 

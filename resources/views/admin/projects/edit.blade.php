@@ -35,5 +35,6 @@
         @enderror
 
         <button type="submit" class="btn btn-primary">Modifica</button>
+        <a href="{{ route('admin.project.index') }}"  class="btn btn-primary">Indietro</a>
     </form>
 @endsection

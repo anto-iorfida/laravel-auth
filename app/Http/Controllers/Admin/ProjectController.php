@@ -98,14 +98,15 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
 
-        $validated = $request->validate(
+        $request->validate(
             [
                 'name' => [
                     'required',
                     'min:5',
                     'max:150',
                     // 'unique:posts,title'
-                    Rule::unique('project')->ignore($project)
+                    // si può mettere anche senza id
+                    Rule::unique('projects')->ignore($project->id)
                 ],
                 'client_name' => 'required|min:5|max:20',
                 'summary' => 'nullable|min:10'

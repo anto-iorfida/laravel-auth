@@ -3,7 +3,7 @@
 @section('content')
     <h2>Crea un nuovo progetto</h2>
 
-    <form action="{{ route('admin.project.store') }}" method="POST">
+    <form action="{{ route('admin.project.store') }}" method="POST"  enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -13,6 +13,11 @@
         @error('name')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
+
+        {{-- <div class="mb-3">
+            <label for="cover_image" class="form-label">Immagine</label>
+            <input class="form-control" type="file" id="cover_image" name="cover_image">
+        </div> --}}
 
         <div class="mb-3">
             <label for="client_name" class="form-label">Cliente</label>
@@ -31,5 +36,6 @@
         @enderror
 
         <button type="submit" class="btn btn-primary">Salva</button>
+        <a href="{{ route('admin.project.index') }}"  class="btn btn-primary">Indietro</a>
     </form>
 @endsection
