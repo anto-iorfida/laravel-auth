@@ -23,12 +23,19 @@
         <strong>data updated:</strong> {{ $project->updated_at }}
     </div>
 
+    @if ($project->cover_image)
+        <div>
+            <img src="{{ asset('storage/' . $project->cover_image) }}" alt="{{ $project->name }}">
+        </div>
+    @endif
+
     @if ($project->summary)
         <p><strong>Summary: </strong>{{ $project->summary }}</p>
     @endif
 
     <div class="icon-show">
         <div><a href="{{ route('admin.project.index') }}"><i class="fa-solid fa-arrow-left"></i></a></div>
-        <div><a href="{{ route('admin.project.edit', ['project' => $project->id]) }}"><i class="fa-solid fa-pen-to-square"></i></a></div>
+        <div><a href="{{ route('admin.project.edit', ['project' => $project->id]) }}"><i
+                    class="fa-solid fa-pen-to-square"></i></a></div>
     </div>
 @endsection

@@ -7,6 +7,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -45,12 +46,26 @@ class ProjectController extends Controller
             [
                 'name' => 'required|min:5|max:150|unique:projects,name',
                 'client_name' => 'required|min:5|max:20',
-                'summary' => 'nullable|min:10'
+                'summary' => 'nullable|min:10',
+                'cover_image' => 'nullable|image|max:512'
             ]
         );
 
         $formData = $request->all();
-        // dd($formData);
+        
+        // --------------------------------------------------------
+        // solo se l'utente ha caricato la cover image
+        // if(isset($formData['cover_image'])) {
+        //oppure... 
+        if ($request->hasFile('cover_image')) {
+            // upload del file nella cartella pubblica(se non c'è la crea)
+            $img_path = Storage::disk('public')->put('project_images', $formData['cover_image']);
+            // salvare nella colonna cover_image del db il path all'immagine caricata
+            // dd($img_path);
+            $formData['cover_image'] = $img_path;
+        }
+        // ----------------------------------------------------------
+
         $newProject = new Project();
         $newProject->fill($formData);
         // o si mette dopo che popolo $newProject senno la variabile è vuota oopure metto formData['name] al posto di $newProject->name
@@ -115,6 +130,21 @@ class ProjectController extends Controller
 
 
         $formData = $request->all();
+
+
+         // se l'utente ha caricato una nuova immagine
+         if($request->hasFile('cover_image')) {
+            // se avevo già un'immagine caricata la cancello
+            if($project->cover_image) {
+                Storage::delete($project->cover_image);
+            }
+            // upload del file nella cartella pubblica
+            $img_path = Storage::disk('public')->put('project_images', $formData['cover_image']);
+            // salvare nella colonna cover_image del db il path all'immagine caricata
+            $formData['cover_image'] = $img_path;
+        }
+
+
         $project->slug = Str::slug($formData['name'], '-');
         $project->update($formData);
 

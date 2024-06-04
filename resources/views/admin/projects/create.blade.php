@@ -14,10 +14,10 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
-        {{-- <div class="mb-3">
+        <div class="mb-3">
             <label for="cover_image" class="form-label">Immagine</label>
             <input class="form-control" type="file" id="cover_image" name="cover_image">
-        </div> --}}
+        </div>
 
         <div class="mb-3">
             <label for="client_name" class="form-label">Cliente</label>
