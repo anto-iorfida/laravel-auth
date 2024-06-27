@@ -168,4 +168,17 @@ class ProjectController extends Controller
         session()->flash('project_deleted', true);
         return redirect()->route('admin.project.index');
     }
+
+    // public function destroyIds(Request $request)
+    // {
+    //     $ids = $request->get('ids');
+    //     foreach($ids as $id){
+    //         Project::find($id);
+    //     }
+    //     $project->delete();
+    //     // dd('eliminato');
+    //     // memorizzare temporaneamente un dato nella sessione dell'utente. Questo dato sarà disponibile solo per la prossima richiesta HTTP e poi sarà automaticamente rimosso.
+    //     session()->flash('project_deleted', true);
+    //     return redirect()->route('admin.project.index');
+    // }
 }

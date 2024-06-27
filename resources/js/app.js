@@ -6,14 +6,14 @@ import.meta.glob([
 ]);
 
 // --------------------------------------------INDEX CONFERMA ELIMINAZIONE------------------------------------------------
- // far caricare la pagina e dopo di che..
- document.addEventListener('DOMContentLoaded', function() {
+// far caricare la pagina e dopo di che..
+document.addEventListener('DOMContentLoaded', function () {
 
 
     const deleteButtons = document.querySelectorAll('.js-delete-btn');
 
     deleteButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
+        button.addEventListener('click', function (event) {
 
             // prevenire l'invio predefinito del modulo
             event.preventDefault();
@@ -33,7 +33,7 @@ import.meta.glob([
             }
         });
     });
-    
+
 });
 // -------------------------------------------/INDEX CONFERMA ELIMINAZIONE------------------------------------------------
 
@@ -41,7 +41,7 @@ import.meta.glob([
 
 // -------------------------------------------FAR COMPARIRE PER 4 SECONDI MESSAGGIO SESSIONE------------------------------
 // messaggio che compare per 3 secondi con conferma eliminazione 
-setTimeout(function() {
+setTimeout(function () {
     let messageElement = document.querySelector('.mess-info');
     if (messageElement) {
         messageElement.classList.add('fade-out');
@@ -49,3 +49,7 @@ setTimeout(function() {
 }, 3000); //  3 secondi
 // ------------------------------------------/FAR COMPARIRE PER 4 SECONDI MESSAGGIO SESSIONE------------------------------
 
+// -------------------------------prova -elimanare piu elementi
+
+
+// -------------------------------
